@@ -1,0 +1,27 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "it is a playground for play around",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sxxlearn2rock/playground.git"
+  },
+  "author": "samsang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sxxlearn2rock/playground/issues"
+  },
+  "homepage": "https://github.com/sxxlearn2rock/playground#readme",
+  "dependencies": {
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1"
+  },
+  "devDependencies": {
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
