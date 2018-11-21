@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.dev.js",
-    "build-formal": "set NODE_ENV=production&&webpack --config webpack.config.dev.js",
-    "start": "webpack-dev-server --config webpack.config.dev.js"
+    "build": "webpack --config webpack.config.js",
+    "build-formal": "set NODE_ENV=production&&webpack --config webpack.config.js",
+    "start": "webpack-dev-server --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,7 @@
     "mini-css-extract-plugin": "^0.4.4",
     "node-sass": "^4.10.0",
     "sass-loader": "^7.1.0",
+    "uglifyjs-webpack-plugin": "^2.0.1",
     "vue-loader": "^15.4.2",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.5.17",
