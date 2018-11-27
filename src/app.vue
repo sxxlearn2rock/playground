@@ -14,9 +14,15 @@
 </style>
 
 <template>
+<div class="wraper">
   <div class="full-width center-content">
       <h1>Hello World!</h1>
-    </div>
+  </div>
+
+  <img src="./image/lena1.jpg">
+  <img src="./image/lena2.jpg">
+</div>
+
 </template>
 
 <script>

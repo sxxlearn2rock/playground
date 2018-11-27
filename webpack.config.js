@@ -77,6 +77,19 @@ module.exports = function() {
             // 'postcss-loader'
             'sass-loader'
           ]
+        },
+        {
+          test: /\.(png|jpg|gif)$/,
+          use: {
+            loader: 'url-loader',
+            options: {
+              // 30k以下的图片用url-loader加载
+              limit: 1024*30,
+              // 否则采用file-loader，它采用与url-loader的options
+              fallback: 'file-loader',
+              name: 'assets/images/[hash].[ext]'
+            }
+          }
         }
       ]
     },
