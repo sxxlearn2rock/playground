@@ -16,11 +16,13 @@
 <template>
 <div class="wraper">
   <div class="full-width center-content">
-      <h1>Hello World!</h1>
+      <h1>Hello World!!!!</h1>
   </div>
 
-  <img src="./image/lena1.jpg">
-  <img src="./image/lena2.jpg">
+  <img src="./image/lena1.jpg"
+       width="128" height="128">
+  <img src="./image/lena2.jpg"
+       width="128" height="128">
 </div>
 
 </template>
