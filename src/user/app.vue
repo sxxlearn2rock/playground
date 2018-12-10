@@ -1,5 +1,5 @@
 <style lang="scss">
-@import '/assets/css/normalize.css';
+@import './common/style/common.scss';
 html,body {
   height: 100%;
 }

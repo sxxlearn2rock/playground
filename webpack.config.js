@@ -91,7 +91,16 @@ module.exports = function() {
     //   // 开启多线程，加速压缩
     //   // parallel: true
     // }));
-    optimization.minimizer.push(new OptimizeCSSAssetsPlugin({}));
+    // 压缩css
+    optimization.minimizer.push(new OptimizeCSSAssetsPlugin({
+      //注意不要写成 /\.css$/g
+      assetNameRegExp: /\.css\.*(?!.*map)/g,  
+      cssProcessor: require('cssnano'),
+      cssProcessorPluginOptions: {
+        preset: ['default', { discardComments: { removeAll: true } }],
+      },
+      canPrint: true
+    }));
   }
 
   return {
