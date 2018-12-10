@@ -5,8 +5,10 @@ const { VueLoaderPlugin } = require('vue-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const packagejson = require("./package.json");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -20,14 +22,14 @@ module.exports = function() {
       template: './src/user/index.html',
       filename: 'user/index.html',
       inject: true,
-      chunks:['user/index', 'vendors']
+      chunks:['user/app', 'vendors']
     }),
     new HtmlWebpackPlugin(
     {
       template: './src/manage/index.html',
       filename: 'manage/index.html',
       inject: true,
-      chunks:['manage/index', 'vendors']
+      chunks:['manage/app', 'vendors']
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css?v=[contenthash]'
@@ -59,24 +61,44 @@ module.exports = function() {
 
   // 根据不同的发布环境，进行不同的配置
   if (devMode) {
+    // 开发环境
     // 打包分析
     plugins.push(new BundleAnalyzerPlugin({
       analyzerPort: 9989
     }));
   }else {
+    // 生产环境
     plugins.push(new CleanWebpackPlugin(['dist']));
-    optimization.minimizer.push(new UglifyJsPlugin({
+    plugins.push(new ParallelUglifyPlugin({
       // js文件末尾可能有版本号
       test: /\.js(\?.*)?$/i,
-      exclude: /node_modules/
+      exclude: /node_modules/,
+      include: /src/,
+      // uglifyJS: {
+      //   output: {
+      //     comments: false,
+      //     beautify: false
+      //   },
+      // }
+      uglifyES: {
+        
+      }
     }));
+    // optimization.minimizer.push(new UglifyJsPlugin({
+    //   // js文件末尾可能有版本号
+    //   test: /\.js(\?.*)?$/i,
+    //   exclude: /node_modules/,
+    //   // 开启多线程，加速压缩
+    //   // parallel: true
+    // }));
+    optimization.minimizer.push(new OptimizeCSSAssetsPlugin({}));
   }
 
   return {
     mode: devMode ? 'development' : 'production',
     entry: {
-      'user/index': path.resolve(__dirname, 'src/user/index.js'),
-      'manage/index': path.resolve(__dirname, 'src/manage/index.js'),
+      'user/app': path.resolve(__dirname, 'src/user/index.js'),
+      'manage/app': path.resolve(__dirname, 'src/manage/index.js'),
       // vendor: Object.keys(packagejson.dependencies)//获取生产环境依赖的库
     },
     output: {
@@ -104,6 +126,10 @@ module.exports = function() {
               presets: ['@babel/preset-env']
             }
           }
+        },
+        {
+          test: /\.pug$/,
+          loader: 'pug-plain-loader'
         },
         {
           test: /\.(sc|c)ss$/,
