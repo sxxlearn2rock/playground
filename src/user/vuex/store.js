@@ -13,7 +13,13 @@ const state =  {
 
 const getters = {
   notes: state => state.notes,
-  activeNote: state => state.activeNote
+  favoNotes: state => {
+    const favoNotes = state.notes.filter((item) => {
+      return item.favorite;
+    });
+    return favoNotes;
+  },
+  activeNote: state => state.activeNote,
 }
 
 export default new Vuex.Store({

@@ -60,10 +60,12 @@
     span.title NOTES
   .toggle-btn
     .btn-group
-      button.btn.btn-default(type="button") ALL Notes
-      button.btn.btn-default(type="button") Favorites
-  .notes-list(v-if='notes.length > 0')
-    div.item.ellipsis(v-for='item in notes',
+      button.btn.btn-default(type="button"
+      @click="toggleNoteToShow(0)") ALL Notes
+      button.btn.btn-default(type="button"
+      @click="toggleNoteToShow(1)") Favorites
+  .notes-list(v-if='notesToShow.length > 0')
+    div.item.ellipsis(v-for='item in notesToShow',
     :class="{active: item == activeNote}",
     @click="setActiveNode(item)") {{ item.title }}
   .no-note-tips(v-else) There is no note.
@@ -75,19 +77,31 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
   data() {
     return {
+      notesToShow: []
     }
   },
   computed: {
     ...mapGetters([
       'notes',
-      'activeNote'
+      'activeNote',
+      'favoNotes'
     ])
   },
   methods: {
     ...mapActions([
       // 将this.setActiveNote(note)映射为this.$store.dispath('setActiveNote', note)
       'setActiveNode'
-    ])
+    ]),
+    toggleNoteToShow(index) {
+      if (index == 0) {
+        this.notesToShow = this.notes;
+      }else if(index == 1) {
+        this.notesToShow = this.favoNotes;
+      }
+    }
+  },
+  mounted() {
+    this.notesToShow = this.notes;
   }
 } 
 </script>
