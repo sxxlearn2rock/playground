@@ -81,15 +81,15 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
+    ...mapGetters('note', [
       'notes',
       'activeNote',
       'favoNotes'
     ])
   },
   methods: {
-    ...mapActions([
-      // 将this.setActiveNote(note)映射为this.$store.dispath('setActiveNote', note)
+    ...mapActions('note', [
+      // 将this.setActiveNote(note)映射为this.$store.dispath('note/setActiveNote', note)
       'setActiveNode'
     ]),
     toggleNoteToShow(index) {

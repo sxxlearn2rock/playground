@@ -56,12 +56,12 @@
 import { mapActions, mapGetters } from 'vuex'
 export default {
   computed: {
-    ...mapGetters([
+    ...mapGetters('note', [
       'activeNote'
     ])
   },
   methods: {
-    ...mapActions([
+    ...mapActions('note', [
       // 将 `this.addNote()` 映射为 `this.$store.dispatch('increment')`
       'addNote',
       'deleteNote',
