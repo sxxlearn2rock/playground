@@ -1,7 +1,7 @@
 <style lang="scss" scoped>
 @import 'src/user/common/style/variable.scss';
 .article-list-wrapper {
-  width: 1000px;
+  width: 1200px;
   height: 100%;
   background-color: $content-bg-color-base;
   margin:20px auto;
@@ -14,7 +14,8 @@
   display: flex;
   align-items: baseline;
   span {
-    min-width: 60px;
+    // min-width: 30px;
+    padding: 0 15px;
     max-width: 100px;
     height: 60px;
     line-height: 60px;
@@ -37,18 +38,26 @@
 <template lang="pug">
 .article-list-wrapper
   .article-menu
-    span.active all
-    span one
-    span two
-    span three
-    span.ellipsis longlonglonglong
+    span(v-for='item of category'
+    :class='{active: item === curCategory}'
+    @click='changeCategory(item)') {{ item }}
 </template>
 
 <script lang="babel">
 export default {
   data() {
     return {
-      
+      category: [
+        'all',
+        'frontend',
+        'backend',
+      ],
+      curCategory: 'all'
+    }
+  },
+  methods: {
+    changeCategory(cate) {
+      this.curCategory = cate;
     }
   }
 }  
