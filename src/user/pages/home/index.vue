@@ -8,7 +8,7 @@
   display
 </template>
 
-<script lang="babel-loader">
+<script lang="babel">
 import Choose from  './common/components/choose.vue';  
 import Display from  './common/components/Display.vue';
 export default {

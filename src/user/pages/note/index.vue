@@ -40,6 +40,11 @@ export default {
     ToolBar,
     NotesList,
     Editor
+  },
+  mounted() {
+    [1, 2, 3].map((n) => {
+      console.log(n);
+    });
   }
 }
 </script>

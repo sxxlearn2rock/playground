@@ -3,8 +3,8 @@
 </style>
 
 <template lang="pug">
-.wrapper
-  p Your choose {{ $store.getters.flavor }}
+.article-list-wrapper
+  | list
 </template>
 
 <script lang="babel">

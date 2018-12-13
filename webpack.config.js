@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const packagejson = require("./package.json");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -69,28 +69,30 @@ module.exports = function() {
   }else {
     // 生产环境
     plugins.push(new CleanWebpackPlugin(['dist']));
-    plugins.push(new ParallelUglifyPlugin({
-      // js文件末尾可能有版本号
-      test: /\.js(\?.*)?$/i,
-      exclude: /node_modules/,
-      include: /src/,
-      // uglifyJS: {
-      //   output: {
-      //     comments: false,
-      //     beautify: false
-      //   },
-      // }
-      uglifyES: {
+    // plugins.push(new ParallelUglifyPlugin({
+    //   // js文件末尾可能有版本号
+    //   test: /\.js(\?.*)?$/i,
+    //   exclude: /node_modules/,
+    //   include: /src/,
+    //   // uglifyJS: {
+    //   //   output: {
+    //   //     comments: false,
+    //   //     beautify: false
+    //   //   },
+    //   // }
+    //   uglifyES: {
         
-      }
-    }));
+    //   }
+    // }));
+    
     // optimization.minimizer.push(new UglifyJsPlugin({
     //   // js文件末尾可能有版本号
     //   test: /\.js(\?.*)?$/i,
     //   exclude: /node_modules/,
     //   // 开启多线程，加速压缩
-    //   // parallel: true
+    //   parallel: true
     // }));
+    
     // 压缩css
     optimization.minimizer.push(new OptimizeCSSAssetsPlugin({
       //注意不要写成 /\.css$/g
@@ -131,9 +133,9 @@ module.exports = function() {
           exclude: /(node_modules|bower_components)/,
           use: {
             loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env']
-            }
+            // options: {
+            //   presets: ['@babel/preset-env']
+            // }
           }
         },
         {

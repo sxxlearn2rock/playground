@@ -8,7 +8,7 @@
   input(name="flavor", @change="changed")
 </template>
 
-<script lang="babel-loader">
+<script lang="babel">
 export default {
   data() {
     return {

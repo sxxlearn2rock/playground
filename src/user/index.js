@@ -1,28 +1,14 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Vuex from 'vuex';
-import App from './app.vue';
 
+import routes from './route/index.js';
 import store from './vuex/store.js'
-
-import Home from './pages/home/index.vue';
-import Note from './pages/Note/index.vue';
+import App from './app.vue';
 
 Vue.use(Router);
 
 const router = new Router({
-  routes: [
-    {
-      path: '/home',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/note',
-      name: 'note',
-      component: Note
-    }
-  ]
+  routes
 });
 
 new Vue({

@@ -10,6 +10,6 @@
 .editor-wrapper
 </template>
 
-<script lang="babel-loader">
+<script lang="babel">
   
 </script>

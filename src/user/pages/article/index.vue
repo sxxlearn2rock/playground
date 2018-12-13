@@ -3,10 +3,10 @@
 </style>
 
 <template lang="pug">
-.wrapper
-  p Your choose {{ $store.getters.flavor }}
+  router-view
 </template>
 
 <script lang="babel">
-  
+export default {
+}
 </script>
