@@ -4,17 +4,12 @@
 
 <template lang="pug">
 .wrapper
-  choose
-  display
+  | home
 </template>
 
 <script lang="babel">
-import Choose from  './common/components/choose.vue';  
-import Display from  './common/components/Display.vue';
 export default {
   components: {
-    Choose,
-    Display
   }
 }
 </script>

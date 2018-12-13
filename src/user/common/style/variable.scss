@@ -1,0 +1,25 @@
+$font-size-base: 14px;
+$font-size-h6: 12px;
+$font-size-h5: $font-size-base;
+$font-size-h4: ceil($font-size-base * 1.25);    //~18px
+
+$color-primary: #337ab7;
+
+$color-black: #000;
+
+
+$color-gray-lightest: #e6e6e6;
+$color-gray-lighter: #ccc;
+$color-gray-light: #999;
+$color-gray-base: #777;
+$color-gray-dark: #4A4A4A;
+$color-gray-darker: #333;
+$color-gray-darkest: #1A1A1A;
+
+$text-color-default: $color-gray-dark;
+
+$content-bg-color-base: #F8F8F8;
+
+$nav-item-hover-color-default: $color-gray-lightest;
+
+$border-color-grey-lightest: $color-gray-lightest;

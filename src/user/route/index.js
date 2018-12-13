@@ -7,7 +7,8 @@ import ArticleContent from '../pages/article/content.vue'
 
 export default [
   {
-    path: '/home',
+    //  /或者/home都路由至home，括号内为正则表达式
+    path: '/:p(home)?',
     name: 'home',
     component: Home
   },
