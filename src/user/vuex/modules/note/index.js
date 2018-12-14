@@ -15,12 +15,12 @@ const getters = {
     return favoNotes;
   },
   activeNote: state => state.activeNote,
-}
+};
 
 export default {
   namespaced: true,
   state,
+  getters,
   actions,
-  mutations,
-  getters
+  mutations
 };

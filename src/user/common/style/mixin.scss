@@ -7,3 +7,13 @@
     background: darken($bg-color, 5%);
   }
 }
+
+// for vue transition component
+@mixin vue-transition-fade($duration:.5s) {
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity $duration;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+}

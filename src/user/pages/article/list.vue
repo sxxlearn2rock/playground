@@ -5,11 +5,6 @@
   height: 100%;
   margin:20px auto;
   .left-content {
-    // background: $content-bg-color-base;
-    .row {
-      // padding: 0;
-      // margin: 0;
-    }
     .article-menu {
       border-bottom: 1px solid $border-color-grey-lightest;
     }
@@ -136,7 +131,7 @@
           }
         }
         span.star {
-          &:hover {
+          &:hover,&.active {
             &>i.fa {
               color: $color-warning;
             }
@@ -165,27 +160,29 @@
         :class='{active: item === curCategory}'
         @click='changeCategory(item)') {{ item }}
       .article-list
-        .item
+        .item(v-for='item of articles'
+         @mouseover='showOperBtns(true)'
+         @mouseout='showOperBtns(false)')
           .item-head
             .first-half.col-xs-6
-              span.special-column 专栏
-              span.pulish-date 2018-12-14
+              span(v-if='item.column_id > 0').special-column 专栏
+              span.pulish-date {{ item.publish_date}}
             .tags.col-xs-6
               i.fa.fa-tags
-              span.tag.tag-info vue
-              span.tag.tag-info webpack
-              span.tag.tag-info webpack4
-              span.tag.tag-info vue2
+              span.tag.tag-info(v-for='tag in item.tags') {{ tag.tag_name}}
           .item-body
             .col-xs-12
-              span.title Vue2+Webpack4从零开始搭建项目（1）：搭建开发环境
+              span.title {{ item.title }}
           .item-foot
             .view-detail.col-xs-6
-              span.thumbs-up: i.fa.fa-thumbs-up  123
-              span.commenting: i.fa.fa-commenting  999
-            .oper-btns.col-xs-6.text-right
-              span.star: i.fa.fa-star
-              span.share: i.fa.fa-share-alt
+              span.thumbs-up: i.fa.fa-thumbs-up  {{ item.thumbs_up_count }}
+              span.commenting: i.fa.fa-commenting  {{ item.comment_count }}
+            transition(name='fade')
+              .oper-btns.col-xs-6.text-right(v-show="isShowOperBtns")
+                span.star(title='收藏'
+                :class='item.userinfo.is_collected ? "active":""')
+                  i.fa.fa-star
+                span.share(title='分享'): i.fa.fa-share-alt
     .right-content.col-xs-3
 
 </template>
@@ -199,12 +196,92 @@ export default {
         'frontend',
         'backend',
       ],
-      curCategory: 'all'
+      curCategory: 'all',
+      isShowOperBtns: false,
+      articles: [
+        {
+          title: 'Vue2+Webpack4从零开始搭建项目（1）：搭建开发环境',
+          column_id: 1,
+          thumbs_up_count: 123,
+          comment_count: 564,
+          publish_date: '2018-12-14 00:12:34',
+          tags:[
+          {
+            id: 1,
+            tag_name: 'vue'
+          },
+          {
+            id: 2,
+            tag_name: 'webpack'
+          },
+          {
+            id: 3,
+            tag_name: 'webpack4'
+          },
+          {
+            id: 4,
+            tag_name: 'vue2'
+          }],
+          userinfo: {
+            is_collected: true
+          }
+        },
+        {
+          title: 'Vue2+Webpack4从零开始搭建项目（2）：搭建开发环境',
+          column_id: null,
+          thumbs_up_count: 123,
+          comment_count: 564,
+          publish_date: '2018-12-14 00:12:34',
+          tags:[
+          {
+            id: 1,
+            tag_name: 'vue'
+          },
+          {
+            id: 2,
+            tag_name: 'webpack'
+          }],
+          userinfo: {
+            is_collected: false
+          }
+        },
+        {
+          title: 'Vue2+Webpack4从零开始搭建项目（3）：搭建开发环境',
+          column_id: 0,
+          thumbs_up_count: 123,
+          comment_count: 564,
+          publish_date: '2018-12-14 00:12:34',
+          tags:[
+          {
+            id: 3,
+            tag_name: 'webpack4'
+          },
+          {
+            id: 4,
+            tag_name: 'vue2'
+          }],
+          userinfo: {
+            is_collected: true
+          }
+        }
+      ]
     }
   },
   methods: {
     changeCategory(cate) {
       this.curCategory = cate;
+    },
+    showOperBtns(flag) {
+      this.isShowOperBtns = flag;
+    }
+  },
+  filters: {
+    publishDateFilter(val) {
+      const regPattDate = /^\d{4,4}-\d\d-\d\d [0-2]\d:[0-5]\d:[0-5]\d$/;
+      if(! regPattDate.test(val)) {
+        return val;
+      }
+      // TODO
     }
   }
 }  

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 // 引入各个modules
+import article from './modules/article/index.js';
 import note from './modules/note/index.js';
 
 Vue.use(Vuex);
@@ -28,6 +29,7 @@ export default new Vuex.Store({
   mutations,
   getters,
   modules: {
+    article,
     note
   }
 });

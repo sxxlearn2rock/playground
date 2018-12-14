@@ -1,6 +1,10 @@
 @import './variable.scss';
 @import './mixin.scss';
 
+// init
+@include vue-transition-fade(0.4s);
+
+// util class
 .ellipsis {
   white-space: nowrap;
   overflow: hidden;
@@ -11,10 +15,9 @@
   -moz-box-sizing:border-box; 
   -webkit-box-sizing:border-box; 
 }
-.no-padding{
-  padding: 0;
-}
 
+
+// component
 .tag {
   display: inline-block;
   font-weight: bold;
