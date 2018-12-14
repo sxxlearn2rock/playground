@@ -29,17 +29,18 @@
         a.navbar-brand(href='#') SAMSANG
       #page-head-navbar-menu.collapse.navbar-collapse
         ul.nav.navbar-nav
-          li(v-for='item in menus' :class='{active: curMenu==item.menu}'
-          @click='changeMenu(item.menu)')
+          li(v-for='item in menus' 
+          :class='{active: activeNavMenu==item.menu}')
             router-link(:to='item.path') {{ item.menu }}
 
 </template>
 
 <script lang="babel">
- export default {
+import { mapGetters } from 'vuex';
+
+export default {
   data() {
     return {
-      curMenu: 'home',
       menus: [
         {
           menu: 'home',
@@ -52,10 +53,13 @@
       ]
     }
   },
-  methods: {
-    changeMenu(menu) {
-      this.curMenu = menu;
-    }
+  computed: {
+    ...mapGetters([
+      'activeNavMenu'
+    ])
+  },
+  mounted() {
+
   }
- } 
+} 
 </script>

@@ -7,6 +7,16 @@
 </template>
 
 <script lang="babel">
+import { mapActions } from 'vuex';
+
 export default {
+  methods: {
+    ...mapActions([
+      'setActiveNavMenu'
+    ])
+  },
+  mounted() {
+    this.setActiveNavMenu('article');
+  }
 }
 </script>

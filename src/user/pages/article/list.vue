@@ -65,7 +65,7 @@
           margin-right: 15px;
           height: $item-head-height;
           line-height: $item-head-height;
-          color: $color-gray-base;
+          color: $color-gray-light;
         }
         span.special-column {
           cursor: pointer;
@@ -159,7 +159,7 @@
 <template lang="pug">
 .article-list-page-wrapper.contanier-fluid
   .row
-    .left-content.col-xs-8
+    .left-content.col-xs-9
       .article-menu
         span(v-for='item of category'
         :class='{active: item === curCategory}'
@@ -186,7 +186,7 @@
             .oper-btns.col-xs-6.text-right
               span.star: i.fa.fa-star
               span.share: i.fa.fa-share-alt
-    .right-content.col-xs-4
+    .right-content.col-xs-3
 
 </template>
 
