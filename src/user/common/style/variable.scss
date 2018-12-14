@@ -4,6 +4,10 @@ $font-size-h5: $font-size-base;
 $font-size-h4: ceil($font-size-base * 1.25);    //~18px
 
 $color-primary: #337ab7;
+$color-success: #5cb85c;
+$color-info: #5bc0de;
+$color-warning: #f0ad4e;
+$color-danger: #d9534f;
 
 $color-black: #000;
 
@@ -23,3 +27,5 @@ $content-bg-color-base: #F8F8F8;
 $nav-item-hover-color-default: $color-gray-lightest;
 
 $border-color-grey-lightest: $color-gray-lightest;
+
+$label-color: #fff;

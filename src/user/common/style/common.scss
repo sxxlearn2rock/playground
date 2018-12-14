@@ -1,3 +1,6 @@
+@import './variable.scss';
+@import './mixin.scss';
+
 .ellipsis {
   white-space: nowrap;
   overflow: hidden;
@@ -8,3 +11,33 @@
   -moz-box-sizing:border-box; 
   -webkit-box-sizing:border-box; 
 }
+
+
+.tag {
+  display: inline-block;
+  font-weight: bold;
+  padding: 0 6px;
+  color: $label-color;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  &.tag-primary {
+    @include tag-variant($color-primary);
+  }
+  &.tag-success {
+    @include tag-variant($color-success);
+  }
+  &.tag-info {
+    @include tag-variant($color-info);
+  }
+  &.tag-warning {
+    @include tag-variant($color-warning);
+  }
+  &.tag-danger {
+    @include tag-variant($color-danger);
+  }
+}
+
+
+
