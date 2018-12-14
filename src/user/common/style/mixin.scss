@@ -1,3 +1,9 @@
 @mixin tag-variant($bg-color:$color-default) {
-  background-color: $bg-color;
+  background: $bg-color;
+  &:hover {
+    background: lighten($bg-color, 10%);
+  }
+  &:active {
+    background: darken($bg-color, 5%);
+  }
 }

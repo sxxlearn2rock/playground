@@ -11,7 +11,9 @@
   -moz-box-sizing:border-box; 
   -webkit-box-sizing:border-box; 
 }
-
+.no-padding{
+  padding: 0;
+}
 
 .tag {
   display: inline-block;
@@ -22,6 +24,7 @@
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25em;
+  cursor: pointer;
   &.tag-primary {
     @include tag-variant($color-primary);
   }
