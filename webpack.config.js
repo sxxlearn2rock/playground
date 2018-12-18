@@ -12,21 +12,20 @@ const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const packagejson = require("./package.json");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-let devMode = process.env.NODE_ENV !== 'production';
-
-module.exports = function() {
+module.exports = function(env, argv) {
+  let devMode = argv.mode == 'development';
   const plugins = [
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin(
     {
-      template: './src/user/index.html',
+      template: path.resolve(__dirname, 'src/user/index.html'),
       filename: 'user/index.html',
       inject: true,
       chunks:['user/app', 'vendors']
     }),
     new HtmlWebpackPlugin(
     {
-      template: './src/manage/index.html',
+      template: path.resolve(__dirname, 'src/manage/index.html'),
       filename: 'manage/index.html',
       inject: true,
       chunks:['manage/app', 'vendors']
